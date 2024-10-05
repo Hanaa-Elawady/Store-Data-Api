@@ -22,6 +22,11 @@ namespace Store.Web
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+            
+            builder.Services.AddDbContext<StoreIdentityContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection"));
+            });
 
             builder.Services.AddSingleton<IConnectionMultiplexer>(config =>
             {
@@ -30,7 +35,8 @@ namespace Store.Web
             });
 
             builder.Services.AddApllicationService();
-            
+            builder.Services.AddIdentityServices();
+
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -48,11 +54,13 @@ namespace Store.Web
             }
             app.UseMiddleware<ExceptionMiddleWare>();
 
-            app.UseHttpsRedirection();
+            app.UseHttpsRedirection(); 
+
             app.UseStaticFiles();   
 
-            app.UseAuthorization();
+            app.UseAuthentication();
 
+            app.UseAuthorization();
 
             app.MapControllers();
 

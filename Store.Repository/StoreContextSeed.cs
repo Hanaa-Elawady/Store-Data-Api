@@ -21,6 +21,16 @@ namespace Store.Repository
                         await context.ProductBrands.AddRangeAsync(brands);
                     }
                 }
+                if(context.deliveryMethods !=null && !context.deliveryMethods.Any())
+                {
+                    var deliveryMethodsData = File.ReadAllText("../Store.Repository/SeedData/delivery.json");
+                    var deliveryMethods = JsonSerializer.Deserialize<List<DeliveryMethod>>(deliveryMethodsData);
+
+                    if (deliveryMethods != null)
+                    {
+                        await context.deliveryMethods.AddRangeAsync(deliveryMethods);
+                    }
+                }
                 if(context.ProductTypes !=null && !context.ProductTypes.Any())
                 {
                     var TypesData = File.ReadAllText("../Store.Repository/SeedData/types.json");
