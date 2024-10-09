@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Store.Repository.Specification.ProductSpecs;
 using Store.Service.Dtos;
-using Store.Service.Interfaces.ProductInterfaces;
+using Store.Service.Interfaces;
 using Store.Web.Helper;
 
 namespace Store.Web.Controllers

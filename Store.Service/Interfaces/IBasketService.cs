@@ -1,6 +1,6 @@
 ﻿using Store.Service.Dtos.BasketDtos;
 
-namespace Store.Service.Services.BasketService
+namespace Store.Service.Interfaces
 {
     public interface IBasketService
     {

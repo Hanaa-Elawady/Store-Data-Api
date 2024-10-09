@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Store.Service.Dtos.BasketDtos;
-using Store.Service.Services.BasketService;
+using Store.Service.Interfaces;
 
 namespace Store.Web.Controllers
 {

@@ -4,7 +4,7 @@ using Store.Repository.Interfaces;
 using Store.Repository.Specification.ProductSpecs;
 using Store.Service.Dtos;
 using Store.Service.Helper;
-using Store.Service.Interfaces.ProductInterfaces;
+using Store.Service.Interfaces;
 
 namespace Store.Service.Services.ProductServices
 {

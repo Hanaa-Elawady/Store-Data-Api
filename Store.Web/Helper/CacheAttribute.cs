@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Store.Service.Services.CacheServices;
+using Store.Service.Interfaces;
 using System.Text;
 
 namespace Store.Web.Helper

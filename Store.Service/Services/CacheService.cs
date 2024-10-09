@@ -1,8 +1,9 @@
 ﻿
 using StackExchange.Redis;
+using Store.Service.Interfaces;
 using System.Text.Json;
 
-namespace Store.Service.Services.CacheServices
+namespace Store.Service.Services
 {
     public class CacheService : ICacheService
     {
@@ -35,7 +36,7 @@ namespace Store.Service.Services.CacheServices
 
             var serializedResponse = JsonSerializer.Serialize(response, options);
 
-            await _database.StringSetAsync(key, serializedResponse , timeToLive);
+            await _database.StringSetAsync(key, serializedResponse, timeToLive);
         }
 
     }
