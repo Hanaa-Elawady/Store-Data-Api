@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Store.Data.Entities;
+using System.Reflection;
 
 namespace Store.Data.Contexts
 {
@@ -10,6 +11,7 @@ namespace Store.Data.Contexts
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Product> Products { get; set; }

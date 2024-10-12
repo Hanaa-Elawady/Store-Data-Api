@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Store.Data\Store.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Specification\PaymentSpecs\" />
+  </ItemGroup>
+
 </Project>

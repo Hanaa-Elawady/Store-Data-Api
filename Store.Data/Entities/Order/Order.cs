@@ -1,4 +1,6 @@
-﻿namespace Store.Data.Entities.Order
+﻿using Store.Data.Entities.Order.Enums;
+
+namespace Store.Data.Entities.Order
 {
     public class Order :BaseEntity<Guid>
     {
@@ -10,9 +12,12 @@
         public OrderStatus OrderStatus { get; set; } = OrderStatus.Placed;
         public OrderPaymentStatus OrderPaymentStatus { get; set; } = OrderPaymentStatus.Pending;
         public IReadOnlyList<OrderItems> OrderItems { get; set; }
-        public string BasketId { get; set; }
+        public string? BasketId { get; set; }
         public decimal SubTotal { get; set; }
         public decimal GetTotal()
             => SubTotal+ DeliveryMethod.Price ;
+
+        public string? PaymentIntentId { get; set; }
+          
     }
 }

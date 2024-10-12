@@ -1,4 +1,4 @@
-﻿namespace Store.Data.Entities.Order
+﻿namespace Store.Data.Entities.Order.Enums
 {
     public enum OrderPaymentStatus
     {
