@@ -11,7 +11,7 @@ namespace Store.Data.Entities.Order
         public int? DeliveryMethodId { get; set; }
         public OrderStatus OrderStatus { get; set; } = OrderStatus.Placed;
         public OrderPaymentStatus OrderPaymentStatus { get; set; } = OrderPaymentStatus.Pending;
-        public IReadOnlyList<OrderItems> OrderItems { get; set; }
+        public List<OrderItems> OrderItems { get; set; }
         public string? BasketId { get; set; }
         public decimal SubTotal { get; set; }
         public decimal GetTotal()

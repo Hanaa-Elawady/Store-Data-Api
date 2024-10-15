@@ -13,12 +13,14 @@ namespace Store.Service.Services.OrderService
 		private readonly IBasketService _basketService;
 		private readonly IUnitOfWork _unitOfWork;
 		private readonly IMapper _mapper;
+		private readonly IPaymentService _paymentService;
 
-		public OrderService(IBasketService basketService , IUnitOfWork unitOfWork , IMapper mapper)
+		public OrderService(IBasketService basketService, IUnitOfWork unitOfWork, IMapper mapper, IPaymentService paymentService)
 		{
 			_basketService = basketService;
 			_unitOfWork = unitOfWork;
 			_mapper = mapper;
+			_paymentService = paymentService;
 		}
 
 		public async Task<OrderDetailsDto> createOrderAsync(OrderDto input)
@@ -60,10 +62,18 @@ namespace Store.Service.Services.OrderService
 
 			var subTotalPrice =  orderItems.Sum(x => x.Price * x.Quantity);
 
-			#region To Do =>Payment
+			#region Payment
+
+			var specs = new OrderWithPaymentIntentSpecs(Basket.PaymentIntentId);
+			var ExistingOrder = await _unitOfWork.Repository<Order, Guid>().GetWithSpecsByIdAsync(specs);
+
+			if(ExistingOrder == null)
+			{
+				await _paymentService.CreateOrUpdatePaymentIntent(Basket);
+			}
 			#endregion
 			var mappedshippingAddress = _mapper.Map<ShippingAddress>(input.ShippingAddress);
-			var MappedOrderItems = _mapper.Map<IReadOnlyList<OrderItems>>(orderItems);
+			var MappedOrderItems = _mapper.Map<List<OrderItems>>(orderItems);
 			var order = new Order
 			{
 				DeliveryMethodId = deliveryMethod.Id,
@@ -72,7 +82,7 @@ namespace Store.Service.Services.OrderService
 				BasketId = input.BasketId,
 				SubTotal = subTotalPrice,
 				OrderItems = MappedOrderItems,
-
+				PaymentIntentId = Basket.PaymentIntentId
 			};
 
 			await _unitOfWork.Repository<Order , Guid >().AddAsync(order);

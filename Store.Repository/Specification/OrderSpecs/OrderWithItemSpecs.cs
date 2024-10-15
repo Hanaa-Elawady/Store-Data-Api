@@ -1,5 +1,4 @@
 ﻿using Store.Data.Entities.Order;
-using System.Linq.Expressions;
 
 namespace Store.Repository.Specification.OrderSpecs
 {

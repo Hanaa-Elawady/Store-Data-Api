@@ -30,12 +30,12 @@ namespace Store.Service.Services
 
 		public async Task<CustomerBasketDto> CreateOrUpdatePaymentIntent(CustomerBasketDto input)
 		{
-			StripeConfiguration.ApiKey=_configuration["Stripe: SecretKey"];
+			StripeConfiguration.ApiKey = _configuration["Stripe:SecretKey"];
 
 			if (input == null)
 				throw new Exception("Basket Is Empty");
 
-			var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod, int>().GetByIdAsync(input.DeliveryMethodId.Value);
+			var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod, int>().GetByIdAsync(input.DeliveryMethodId);
 
 			if (deliveryMethod == null)
 				throw new Exception("No deliveryMethod");

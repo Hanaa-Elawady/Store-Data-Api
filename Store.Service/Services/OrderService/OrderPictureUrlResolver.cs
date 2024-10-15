@@ -16,7 +16,7 @@ namespace Store.Service.Services.OrderService
 
 		public string Resolve(OrderItems source, OrderItemDto destination, string destMember, ResolutionContext context)
 		{
-			if (!string.IsNullOrEmpty(source.ProductItem.PictureUrl))
+			if (!string.IsNullOrEmpty(source.ProductItem.PictureUrl) ||!source.ProductItem.PictureUrl.Contains(_configuration["BaseUrl"]))
 				return $"{_configuration["BaseUrl"]}/{source.ProductItem.PictureUrl}";
 
 			return null;
