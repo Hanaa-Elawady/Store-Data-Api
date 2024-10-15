@@ -1,35 +1,23 @@
-Store-Api 
-How to Configure the Application
-If you're setting up the project locally, you will need to provide your own appsettings.json file in the root of the project. Here is a template for the file, which should be customized with your own values:
 
-json
-Copy code
-{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "AllowedHosts": "*",
-  "ConnectionStrings": {
-    "DefaultConnection": "your-connection-string-here",
-    "IdentityConnection": "your-identity-connection-string-here",
-    "Redis": "localhost"
-  },
-  "BaseUrl": "https://localhost:7108",
-  "Token": {
-    "Key": "your-token-key-here",
-    "Issuer": "https://localhost:7108"
-  },
-  "Stripe": {
-    "PublishableKey": "your-publishable-key-here",
-    "SecretKey": "your-secret-key-here"
-  }
-}
-Security Best Practices
-Environment Variables: Consider storing sensitive information such as connection strings, API keys, and tokens in environment variables rather than hardcoding them in appsettings.json.
+# E-Commerce API Project
 
-Git Ignore: Ensure that appsettings.json is included in your .gitignore file to prevent it from being accidentally committed in the future.
+## Overview
 
-Production vs Development: Use separate configuration files for production (appsettings.Production.json) and development (appsettings.Development.json) to ensure that sensitive production settings are not used in development environments.
+This project is an E-Commerce API built with C# utilizing the Onion architecture. It integrates various design patterns and technologies for a robust, scalable, and secure application.
+
+## Key Features
+
+- **Architecture**: Onion architecture for separation of concerns.
+- **Technologies**: 
+  - **Framework**: .NET with Entity Framework Core
+  - **Database**: SQL Server
+  - **Caching**: Redis
+  - **Authentication**: Identity and JWT
+- **Design Patterns**: Unit of Work, Specification
+
+## Project Structure
+
+- **Core**: Contains business logic and domain entities.
+- **Infrastructure**: Data access and external service implementations.
+- **Services**: Application services for business operations.
+rview of the project, its structure, setup instructions, and usage details. Adjust the content as necessary to fit the specific details and preferences for your project.
