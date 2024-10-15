@@ -9,11 +9,14 @@ namespace Store.Web.Controllers
 	public class PaymentController : BaseController
 	{
 		private readonly IPaymentService _paymentService;
-		const string endpointSecret = "whsec_2a36b456c66e8d63aa051813d785bbbf283f305c9885442a084ceac21cc1ad78";
+		private readonly IConfiguration _configuration;
+		private readonly string endpointSecret;
 
-		public PaymentController(IPaymentService paymentService)
+		public PaymentController(IPaymentService paymentService ,IConfiguration configuration)
 		{
 			_paymentService = paymentService;
+			_configuration = configuration;
+			endpointSecret = _configuration["Stripe:endpointSecret"];
 		}
 
 		[HttpPost]
