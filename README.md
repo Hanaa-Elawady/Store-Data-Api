@@ -1,7 +1,3 @@
-Here's a draft for a README file for the Api E-commerce project:
-
----
-
 # Api for E-commerce
 
 ## Overview
